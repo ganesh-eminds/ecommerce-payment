@@ -1,0 +1,20 @@
+server:
+  port: 8082
+
+spring:
+  kafka:
+    bootstrap-servers: kafka:9092
+  cloud:
+    stream:
+      function:
+        definition : paymentProcessor
+      bindings:
+        paymentProcessor-in-0 :
+          destination: order-event
+        paymentProcessor-out-0:
+          destination: payment-event
+  datasource:
+    url: jdbc:postgresql://postgres:5432/ecommerce
+    username: user
+    password: pass
+    driver-class-name: org.postgresql.Driver
